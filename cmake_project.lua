@@ -155,7 +155,8 @@ function m.generate(prj)
 			_p(1, ')')
 		end
 
-		if #cfg.frameworkdirs > 0 or #cfg.includedirsafter > 0 then
+
+		if #cfg.frameworkdirs > 0 or (cfg.includedirsafter and #cfg.includedirsafter > 0) then
 			_p(1, 'if (MSVC)')
 			_p(2, 'target_compile_options("%s" PRIVATE %s)', prj.name, table.implode(p.tools.msc.getincludedirs(cfg, {}, {}, cfg.frameworkdirs, cfg.includedirsafter), "", "", " "))
 			_p(1, 'else()')
